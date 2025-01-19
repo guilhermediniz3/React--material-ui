@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                   // Definindo a versão do JavaScript
+    "lib": ["dom", "esnext"],          // Inclui as bibliotecas para DOM e recursos modernos do ES
+    "jsx": "react-jsx",                // Usando JSX no React 17+ (padrão para o React 17)
+    "module": "ESNext",                // Utiliza o sistema de módulos ES moderno
+    "moduleResolution": "node",        // Resolução de módulos como no Node.js
+    "strict": true,                    // Habilita regras rigorosas de verificação de tipos
+    "esModuleInterop": true,           // Habilita interoperabilidade de módulos ES
+    "skipLibCheck": true,              // Ignora a checagem de tipos em bibliotecas
+    "forceConsistentCasingInFileNames": true,  // Força nomes de arquivos consistentes
+    "resolveJsonModule": true,         // Permite importar arquivos JSON
+    "noEmit": true,                    // Não emite arquivos compilados (ideal para projetos React)
+    "isolatedModules": true            // Garante que cada arquivo seja tratado como módulo isolado
+  },
+  "include": [
+    "src"                              // Inclui todos os arquivos dentro da pasta 'src'
+  ],
+  "exclude": [
+    "node_modules"                     // Exclui a pasta 'node_modules'
+  ]
+}
