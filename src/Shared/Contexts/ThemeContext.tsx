@@ -1,67 +1,51 @@
+
+
+
 import { createContext, useCallback, useContext, useMemo, useState } from "react";   
 import { Box, ThemeProvider } from '@mui/material';
-import { DarkTheme,LightTheme } from "../Themes";
-interface IThemeContextData{
-    themeName: 'light' | 'dark';
-    
-     toggleTheme:()=>void; // trocar o tema
+import { DarkTheme, LightTheme, PurpleTheme} from "../Themes";  // Importe o PurpleTheme
+
+
+interface IThemeContextData {
+    themeName: 'light' | 'dark' | 'purple';
+    toggleTheme: () => void; // Função para alternar o tema
 }
 
-
 const ThemeContext = createContext({} as IThemeContextData);
-export const useAppThemeContext=()=>{
+
+export const useAppThemeContext = () => {
     return useContext(ThemeContext);
 }
 
-export const AppThemeProvider: React.FC<any> = ({children})=>{
-const[themeName,setThemeName] = useState<'light' | 'dark'>('light');
+export const AppThemeProvider: React.FC<any> = ({ children }) => {
+    const [themeName, setThemeName] = useState<'light' | 'dark' | 'purple'>('light');
 
-const toggleTheme = useCallback(()=>{
-setThemeName(oldThemeName => oldThemeName === 'light'?'dark':'light');
-},[]);
+    // Função para alternar entre os temas
+    const toggleTheme = useCallback(() => {
+        setThemeName((oldThemeName) => {
+            if (oldThemeName === 'light') return 'dark';
+            if (oldThemeName === 'dark') return 'purple';
+            return 'light';
+        });
+    }, []);
 
-const theme = useMemo(()=> {
-    if(themeName ==='light') return LightTheme;
-    return DarkTheme;
-},[themeName]);
+    // Definir o tema atual baseado no estado
+    const theme = useMemo(() => {
+        if (themeName === 'light') return LightTheme;
+        if (themeName === 'dark') return DarkTheme;
+        return PurpleTheme; // Use o tema roxo
+    }, [themeName]);
 
-return (
-<ThemeContext.Provider value={{themeName,toggleTheme}}>
-    <ThemeProvider theme={theme}>
-    <Box width="100vw" height="100vh" bgcolor={theme.palette.background.default}> 
-    {children}
-    </Box>   
-    </ThemeProvider>
-</ThemeContext.Provider>
-);
-
+    return (
+        <ThemeContext.Provider value={{ themeName, toggleTheme }}>
+            <ThemeProvider theme={theme}>
+                <Box width="100vw" height="100vh" bgcolor={theme.palette.background.default}>
+                    {children}
+                </Box>   
+            </ThemeProvider>
+        </ThemeContext.Provider>
+    );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

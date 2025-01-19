@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material';
 import { cyan, yellow, purple } from '@mui/material/colors';
 
-export const DarkTheme = createTheme({
+export const PurpleTheme = createTheme({
 
     palette: {
         primary: {
@@ -17,8 +17,8 @@ export const DarkTheme = createTheme({
             contrastText: '#ffffff',
         },
         background: {
-            paper: purple[900],  // Cor roxa mais escura para o papel
-            default: purple[800], // Cor roxa para o fundo
+            paper: '#2c003e',  // Cor personalizada para o fundo (roxo escuro)
+            default: '#3e0056', // Cor personalizada para o fundo principal
         },
     },
 
